@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CrispCut · Eliminador de fondo 100% local</title>
+    <meta name="description" content="Recortes quirúrgicos. Cabello, pelaje y transparencias sin halos. Procesamiento 100% en tu navegador, sin servidores, sin APIs." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+            <span class="brand-dot"></span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">CRISPCUT</span>
+            <span class="brand-version">v1.0 · local engine</span>
+          </div>
+        </div>
+
+        <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema" title="Cambiar tema">
+          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- ==================== HERO ==================== -->
+      <section class="hero">
+        <div class="hero-grid bg-grid"></div>
+        <div class="hero-content">
+          <div class="badge">
+            <span class="pulse-dot"></span>
+            MOTOR LOCAL · SIN APIS · SIN LÍMITES
+          </div>
+          <h1 class="hero-title">
+            Recortes <br />
+            <span class="hero-accent">quirúrgicos<svg class="hero-underline" viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2,6 Q75,0 150,5 T298,4" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span>.<br />
+            Cada pelo. Cada pestaña.
+          </h1>
+          <p class="hero-desc">
+            Elimina fondos con precisión profesional directamente en tu navegador.
+            Detecta cabello, pelaje, transparencias y bordes complejos sin halos
+            ni artefactos — listo para e-commerce, branding y diseño.
+          </p>
+          <div class="hero-cta">
+            <a href="#tool" class="btn btn-primary">Empezar ahora <span class="mono">↓</span></a>
+            <div class="hero-meta">
+              <span>● 100% privado</span>
+              <span>◆ Sin cuentas</span>
+              <span>✦ Alta resolución</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TOOL ==================== -->
+      <section id="tool" class="tool">
+        <div class="section-head">
+          <div>
+            <div class="mono section-eyebrow">/ HERRAMIENTA</div>
+            <h2 class="section-title">Sube una imagen. Recibe un recorte perfecto.</h2>
+          </div>
+          <button id="cancel-btn" class="btn btn-ghost" hidden>✕ Cancelar</button>
+        </div>
+
+        <!-- Upload zone -->
+        <div id="upload-zone" class="upload-zone">
+          <input id="file-input" type="file" accept="image/*" hidden />
+          <span class="corner tl"></span>
+          <span class="corner tr"></span>
+          <span class="corner bl"></span>
+          <span class="corner br"></span>
+          <div class="upload-inner">
+            <div class="upload-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <h3>Suelta tu imagen aquí</h3>
+            <p>O haz clic para seleccionar un archivo. Procesamos todo en tu navegador — tus imágenes no se suben a ningún servidor.</p>
+            <div class="upload-tags">
+              <span>PNG</span><span>JPG</span><span>WEBP</span><span>Hasta 4K</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Processing state -->
+        <div id="processing" class="processing card" hidden>
+          <div class="loader pulse-ring">
+            <svg class="spin" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+          </div>
+          <h3 id="progress-label">Inicializando motor</h3>
+          <p>Todo el procesamiento ocurre localmente. La primera vez tarda unos segundos descargando el motor (~40 MB).</p>
+          <div class="progress-wrap">
+            <div class="mono progress-meta">
+              <span>PROGRESO</span>
+              <span id="progress-pct">0%</span>
+            </div>
+            <div class="progress-bar"><div id="progress-fill"></div></div>
+          </div>
+        </div>
+
+        <!-- Editor -->
+        <div id="editor" class="editor" hidden>
+          <div class="editor-main">
+            <div id="canvas-area" class="canvas-area bg-checker" title="Click para cambiar el color de fondo">
+              <img id="cutout-img" alt="Sin fondo" draggable="false" />
+              <div id="hint" class="canvas-hint">↳ Click en el fondo para añadir color</div>
+              <div id="dims-badge" class="canvas-dims"></div>
+              <!-- Floating toolbar -->
+              <div class="toolbar" id="toolbar"></div>
+            </div>
+            <div class="editor-actions">
+              <button id="reset-btn" class="btn btn-ghost">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                Nueva imagen
+              </button>
+              <button id="download-btn" class="btn btn-primary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar PNG
+              </button>
+            </div>
+          </div>
+
+          <aside class="editor-side">
+            <div class="card">
+              <div class="card-head">
+                <h4>FONDO</h4>
+                <span class="mono" id="bg-label">TRANSPARENTE</span>
+              </div>
+              <div id="preset-grid" class="preset-grid"></div>
+              <label class="custom-color">
+                <span class="custom-swatch" id="custom-swatch"></span>
+                <span class="custom-label">Color personalizado</span>
+                <span class="mono" id="custom-hex">#0033FF</span>
+                <input id="custom-color" type="color" value="#0033FF" />
+              </label>
+            </div>
+
+            <div class="card">
+              <h4>ORIGINAL</h4>
+              <div class="original-preview"><img id="original-img" alt="Original" /></div>
+              <div class="meta-grid">
+                <div class="meta-cell"><div class="meta-key">DIMENSIONES</div><div class="meta-val" id="meta-dims">—</div></div>
+                <div class="meta-cell"><div class="meta-key">FORMATO</div><div class="meta-val">PNG 32</div></div>
+              </div>
+            </div>
+
+            <div class="card card-soft">
+              <div class="mono small"><span class="pulse-dot"></span> LOCAL ENGINE</div>
+              <p>100% en tu navegador. Tus imágenes nunca abandonan tu dispositivo.</p>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Error -->
+        <div id="error-state" class="error-state card" hidden>
+          <h3>Algo salió mal</h3>
+          <p>Intenta con otra imagen (máx. 4K, formatos PNG/JPG/WEBP).</p>
+          <button id="retry-btn" class="btn btn-ghost">Reintentar</button>
+        </div>
+      </section>
+
+      <!-- ==================== FEATURES ==================== -->
+      <section class="features">
+        <div class="features-grid">
+          <div class="features-image">
+            <div class="bg-checker"></div>
+            <img src="https://images.unsplash.com/photo-1764407064802-e6677eac078a?crop=entropy&cs=srgb&fm=jpg&w=800&q=80" alt="Pelaje" />
+            <div class="features-image-tag mono">↪ detalle real a 1:1</div>
+          </div>
+          <div class="features-text">
+            <div class="badge">PRECISIÓN PIXEL-PERFECT</div>
+            <h2>Donde otras herramientas dejan halos, <span class="hero-accent">nosotros dejamos detalle.</span></h2>
+            <p>Construido sobre el modelo BRIA RMBG con refinamiento de bordes por alpha matting. Listo para pipelines profesionales de e-commerce, fotografía de producto y redes sociales.</p>
+            <div class="feature-grid">
+              <div class="feature-card"><div class="feature-icon">~</div><h3>Cabello y pestañas</h3><p>Extrae hasta el mechón más fino con bordes alpha-blended naturales.</p></div>
+              <div class="feature-card"><div class="feature-icon">◐</div><h3>Pelaje y texturas</h3><p>Perfecto en mascotas, prendas de lana y materiales complejos.</p></div>
+              <div class="feature-card"><div class="feature-icon">◇</div><h3>Transparencias</h3><p>Respeta cristal, humo y superficies semitransparentes sin halos.</p></div>
+              <div class="feature-card"><div class="feature-icon">▦</div><h3>Motor local</h3><p>WebAssembly + ONNX. Sin servidores, sin latencia, sin cuotas.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div><strong>CRISPCUT</strong> <span class="mono small">· Procesamiento 100% local</span></div>
+        <div class="mono small"><span>WASM · ONNX · Canvas 2D</span> <span class="pulse-dot"></span> ONLINE</div>
+      </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" hidden></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
